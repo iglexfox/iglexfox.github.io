@@ -1,0 +1,17 @@
+function rget(url,tag){
+  $.ajax({url:url+new Date().getTime(),cache:false, success:function(data) {
+    if(data){
+      var json=JSON.parse(data);
+      if(json) {
+        json=json.k.split(',');
+        var d={}; for(i in json) d['d'+i]=json[i];
+        $(tag).html($('#tmp').tmpl(d));
+      }
+    }
+  }});
+}
+function remo(){
+  rget('http://www-kj78.com/kj_api/bmjg.js?_=','#t1');
+  rget('http://kj5588.com/chajian/bmjg.js?_=','#t2');
+}
+remo();
